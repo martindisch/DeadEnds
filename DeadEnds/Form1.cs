@@ -32,9 +32,7 @@ namespace DeadEnds
             }
         }
 
-        // TODO Count occurences and order list
         // TODO Progressbar
-        // TODO Warning for files that are directly accessed
         private void button2_Click(object sender, EventArgs e)
         {
             if (textBox1.Text != "")
