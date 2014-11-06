@@ -71,7 +71,7 @@
             // 
             this.names.Tag = "";
             this.names.Text = "Names";
-            this.names.Width = 215;
+            this.names.Width = 194;
             // 
             // timesUsed
             // 
