@@ -14,6 +14,7 @@ namespace DeadEnds
     {
 
         private List<System.IO.FileInfo> filenames;
+        private List<System.IO.FileInfo> usedFiles;
 
         public Form1()
         {
@@ -40,13 +41,19 @@ namespace DeadEnds
             {
                 System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(textBox1.Text);
                 filenames = getFiles(directory);
-                List<System.IO.FileInfo> usedFiles = getUsage(new System.IO.FileInfo(textBox2.Text));
+                usedFiles = new List<System.IO.FileInfo>();
+                getUsage(new System.IO.FileInfo(textBox2.Text));
 
-                /*foreach (System.IO.FileInfo file in filenames)
+                foreach (System.IO.FileInfo file in filenames)
                 {
-                    ListViewItem item = new ListViewItem(new[] { file.Name, "0" });
+                    String used = "No"; ;
+                    if (usedFiles.Contains(file))
+                    {
+                        used = "Yes";
+                    }
+                    ListViewItem item = new ListViewItem(new[] { file.Name,  used});
                     listView1.Items.Add(item);
-                }*/
+                }
                 MessageBox.Show("Checked usage of " + filenames.Count + " files", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -88,22 +95,19 @@ namespace DeadEnds
             return filenames;
         }
 
-        private List<System.IO.FileInfo> getUsage(System.IO.FileInfo file)
+        private void getUsage(System.IO.FileInfo file)
         {
-            List<System.IO.FileInfo> usedFiles = new List<System.IO.FileInfo>();
             String content = System.IO.File.ReadAllText(file.FullName);
             foreach (System.IO.FileInfo currentFile in filenames) {
                 if (content.Contains(currentFile.Name))
                 {
-                    if (!usedFiles.Contains(file))
+                    if (!usedFiles.Contains(currentFile))
                     {
-                        usedFiles.Add(file);
-                        usedFiles.AddRange(getUsage(file));
+                        usedFiles.Add(currentFile);
+                        getUsage(currentFile);
                     }
                 }
             }
-            return usedFiles;
         }
-
     }
 }

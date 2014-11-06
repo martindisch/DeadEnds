@@ -79,7 +79,7 @@
             // 
             // timesUsed
             // 
-            this.timesUsed.Text = "Times used";
+            this.timesUsed.Text = "Used";
             this.timesUsed.Width = 91;
             // 
             // button2
