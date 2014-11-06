@@ -36,11 +36,11 @@ namespace DeadEnds
             if (textBox1.Text != "")
             {
                 System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(textBox1.Text);
-                List<String> filenames = getFiles(directory);
+                List<System.IO.FileInfo> filenames = getFiles(directory);
 
-                foreach (String filename in filenames)
+                foreach (System.IO.FileInfo file in filenames)
                 {
-                    ListViewItem item = new ListViewItem(new[] { filename, "0" });
+                    ListViewItem item = new ListViewItem(new[] { file.Name, "0" });
                     listView1.Items.Add(item);
                 }
                 MessageBox.Show("Checked usage of " + filenames.Count + " files", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -51,13 +51,13 @@ namespace DeadEnds
             }
         }
 
-        private List<String> getFiles(System.IO.DirectoryInfo directory)
+        private List<System.IO.FileInfo> getFiles(System.IO.DirectoryInfo directory)
         {
-            List<String> filenames = new List<String>();
+            List<System.IO.FileInfo> filenames = new List<System.IO.FileInfo>();
             System.IO.DirectoryInfo[] directories = directory.GetDirectories();
             System.IO.FileInfo[] files = directory.GetFiles();
             foreach (System.IO.FileInfo file in files) {
-                filenames.Add(file.Name);
+                filenames.Add(file);
             }
             foreach (System.IO.DirectoryInfo dir in directories)
             {
