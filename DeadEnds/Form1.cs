@@ -28,6 +28,9 @@ namespace DeadEnds
             }
         }
 
+        // TODO Count occurences and order list
+        // TODO Progressbar
+        // TODO Warning for files that are directly accessed
         private void button2_Click(object sender, EventArgs e)
         {
             if (textBox1.Text != "")
@@ -40,11 +43,11 @@ namespace DeadEnds
                     ListViewItem item = new ListViewItem(new[] { filename, "0" });
                     listView1.Items.Add(item);
                 }
-                MessageBox.Show("Replaced all extensions", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Checked usage of " + filenames.Count + " files", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Select an extension", "Missing extension", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Select a project folder", "Missing extension", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
