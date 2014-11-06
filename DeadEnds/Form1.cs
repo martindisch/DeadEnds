@@ -16,5 +16,16 @@ namespace DeadEnds
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dg = new FolderBrowserDialog();
+            dg.ShowNewFolderButton = false;
+            dg.RootFolder = System.Environment.SpecialFolder.Desktop;
+            if (dg.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = dg.SelectedPath;
+            }
+        }
     }
 }
